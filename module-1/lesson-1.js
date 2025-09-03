@@ -60,8 +60,48 @@ const addThreeNumbers = (a,b,c) => a+b+c;
     function multiply(){
         const num1 = 2, num2 = 4;
         const pro = num1*num2;
-        console.log(pro);
+        // console.log(pro);
     }
 )();
 
-// STOP: Parameters and Arguments
+//Variable Parameters/Rest Parameter
+const addManyNumbers = (...numbers) => {
+    let sum = 0;
+    for (i=0; i<numbers.length; i++) 
+        sum+=numbers[i];
+    return sum;
+}
+// console.log(addManyNumbers(1, 3, 5, 7, 1));
+
+
+//Revision
+
+//Area of Circle
+const areaOfCircle = (radius) => {
+    return Math.PI*(radius**2);
+}
+// console.log(areaOfCircle(4));
+
+//Area of Triangle
+const areaOfTriangle = (base, height) => {
+    return 0.5*base*height;
+}
+// console.log(areaOfTriangle(10, 5));
+
+//Circumference of a Circle
+const circumferenceOfCircle = (radius) => {
+    return 2*Math.PI*radius;
+}
+// console.log(circumferenceOfCircle(10));
+
+//Determining the Y-coordinate of a line
+const giveYCordinate = (coefficient, x, intercept) => {
+    return coefficient*x+intercept;
+}
+// console.log(giveYCordinate(2, 2, 6));
+
+//The for loop
+const numberArray = [1, 2, 3, 4, 5, 6, 7];
+for(i=0; i<numberArray.length; i++) {
+    // console.log(numberArray[i]);
+}
