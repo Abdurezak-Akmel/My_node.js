@@ -105,3 +105,70 @@ const numberArray = [1, 2, 3, 4, 5, 6, 7];
 for(i=0; i<numberArray.length; i++) {
     // console.log(numberArray[i]);
 }
+
+
+// Exercise - Fundamentals of JS
+
+// The getDataType Function
+const getDataType = (unknownData) => {
+    return typeof(unknownData);
+}
+// console.log(getDataType('safd'));
+
+//Negative, Positive or zero checker
+const signChecker = (number) => {
+    if(number<0)
+        console.log("negative");
+    else if (number===0)
+        console.log("zero");
+    else
+        console.log("positive");
+}
+// signChecker(0);
+
+//Grade Calculator
+
+const calculateGrade = (mark) => {
+    mark = Number(mark);
+    if(typeof(mark)==NaN || mark<0 || mark>100){
+        console.log("Invalid mark input!");
+    }
+    if(mark<=100 && mark>=90)
+        console.log('A');
+    else if(mark<90 && mark>=80)
+        console.log('B');
+    else if(mark<80 && mark>=70)
+        console.log('C');
+    else if(mark<70 && mark>=60)
+        console.log('D');
+    else if(mark<60 && mark>=0) 
+        console.log('F');
+}
+// calculateGrade('sd');
+
+const userGradeInput = () => {
+    const mark = prompt("Please enter your mark: ", "your mark out of 100");
+    calculateGrade(mark);
+}
+// userGradeInput();
+
+// Log all even numbers below 50
+const logEven = () => {
+    for(let i=0; i<=50; i++){
+        if(i%2!=0)
+            continue;
+        console.log(i);
+    }
+}
+// logEven();
+
+const sumtoN = (n) => {
+    let sum = 0;
+    for(let i=1; i<=n; i++) {
+        sum+=i;
+    }
+    return sum;
+}
+// console.log(sumtoN(100));
+
+// Stop: exercise 7

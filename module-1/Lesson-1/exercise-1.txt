@@ -1,0 +1,140 @@
+To help you internalize JavaScript fundamentals, I've compiled a set of questions and coding challenges that cover key concepts like variables, data types, functions, loops, conditionals, arrays, objects, and more. These exercises are designed to be progressive, starting with basics and moving to more complex problems. Each question includes a brief explanation of the concept being tested and a suggested approach. You can solve these by writing code in a JavaScript environment (e.g., browser console, Node.js, or an online editor like Replit or CodePen).
+
+---
+
+### **JavaScript Fundamentals: Practice Questions and Coding Challenges**
+
+#### **1. Variables and Data Types**
+**Concept**: Understanding `let`, `const`, `var`, and JavaScript's primitive data types (string, number, boolean, null, undefined).
+
+- **Question 1**: Write a program that declares a `const` variable for your name, a `let` variable for your age, and a `var` variable for your favorite color. Log all three to the console. Then try reassigning each variable and explain what happens.
+  - **Why**: Tests understanding of variable declarations and their mutability.
+  - **Approach**: Use `console.log()` to output values. Try reassigning each variable to see which throws an error (`const` cannot be reassigned).
+
+- **Question 2**: Create a function `getDataType` that takes any input and returns its data type using the `typeof` operator.
+  - **Example**: `getDataType(42)` → `"number"`, `getDataType("Hello")` → `"string"`.
+  - **Why**: Reinforces understanding of JavaScript’s dynamic typing.
+  - **Approach**: Use `typeof` and test with various inputs like `null`, `undefined`, arrays, and objects.
+
+#### **2. Operators and Conditionals**
+**Concept**: Using arithmetic, comparison, and logical operators, along with `if`, `else if`, and `switch` statements.
+
+- **Question 3**: Write a program that takes a number and logs whether it’s positive, negative, or zero using `if-else` statements.
+  - **Why**: Practices conditionals and comparison operators.
+  - **Approach**: Use `if`, `else if`, and `else` to check the number’s value.
+
+- **Question 4**: Create a function `calculateGrade` that takes a score (0–100) and returns a letter grade (A: 90–100, B: 80–89, C: 70–79, D: 60–69, F: below 60) using either `if-else` or a `switch` statement.
+  - **Why**: Tests conditional logic and decision-making.
+  - **Approach**: Use multiple conditions to map score ranges to grades.
+
+#### **3. Loops**
+**Concept**: Iterating with `for`, `while`, and `do-while` loops.
+
+- **Question 5**: Write a program that logs all even numbers from 1 to 50 using a `for` loop.
+  - **Why**: Practices loop syntax and modulo operator (`%`).
+  - **Approach**: Loop from 1 to 50 and check if each number is divisible by 2.
+
+- **Question 6**: Create a function `sumToN` that takes a number `n` and returns the sum of all numbers from 1 to `n` using a `while` loop.
+  - **Example**: `sumToN(5)` → `1 + 2 + 3 + 4 + 5 = 15`.
+  - **Why**: Reinforces `while` loops and accumulation patterns.
+  - **Approach**: Initialize a sum variable and increment a counter until it reaches `n`.
+
+#### **4. Functions**
+**Concept**: Defining and invoking functions, using parameters, return statements, and scope.
+
+- **Question 7**: Write a function `isPalindrome` that takes a string and returns `true` if it’s a palindrome (reads the same forward and backward, case-insensitive) and `false` otherwise.
+  - **Example**: `isPalindrome("Racecar")` → `true`, `isPalindrome("hello")` → `false`.
+  - **Why**: Tests string manipulation and function logic.
+  - **Approach**: Convert the string to lowercase, reverse it, and compare it to the original.
+
+- **Question 8**: Create a function `factorial` that calculates the factorial of a non-negative integer using recursion.
+  - **Example**: `factorial(5)` → `5 * 4 * 3 * 2 * 1 = 120`.
+  - **Why**: Introduces recursive functions and base cases.
+  - **Approach**: Use a base case (`n === 0`) and recursive calls for `n * factorial(n-1)`.
+
+#### **5. Arrays**
+**Concept**: Working with arrays, including indexing, iteration, and common methods (`push`, `pop`, `map`, `filter`, etc.).
+
+- **Question 9**: Write a function `findMax` that takes an array of numbers and returns the largest number.
+  - **Example**: `findMax([3, 1, 4, 1, 5])` → `5`.
+  - **Why**: Practices array iteration and comparison.
+  - **Approach**: Loop through the array or use `Math.max(...array)`.
+
+- **Question 10**: Create a function `removeDuplicates` that takes an array and returns a new array with duplicate values removed.
+  - **Example**: `removeDuplicates([1, 2, 2, 3, 3, 4])` → `[1, 2, 3, 4]`.
+  - **Why**: Tests array methods like `Set` or manual deduplication.
+  - **Approach**: Use a `Set` or loop to track unique values.
+
+#### **6. Objects**
+**Concept**: Creating and manipulating objects, accessing properties, and using methods.
+
+- **Question 11**: Create an object `person` with properties `name`, `age`, and `hobbies` (an array). Write a method `introduce` that returns a string like: "Hi, I'm [name], I'm [age] years old, and I enjoy [hobbies]."
+  - **Example**: `person.introduce()` → `"Hi, I'm Alice, I'm 25 years old, and I enjoy reading, hiking."`
+  - **Why**: Tests object creation and method definition.
+  - **Approach**: Use template literals and `join()` for the hobbies array.
+
+- **Question 12**: Write a function `countProperties` that takes an object and returns the number of its own properties.
+  - **Example**: `countProperties({a: 1, b: 2, c: 3})` → `3`.
+  - **Why**: Reinforces object property access and iteration.
+  - **Approach**: Use `Object.keys()` or a `for...in` loop.
+
+#### **7. String Manipulation**
+**Concept**: Working with strings using methods like `slice`, `split`, `join`, and regular expressions.
+
+- **Question 13**: Write a function `reverseWords` that takes a sentence and reverses the order of words.
+  - **Example**: `reverseWords("Hello world")` → `"world Hello"`.
+  - **Why**: Tests string splitting and array manipulation.
+  - **Approach**: Split the sentence into an array of words, reverse the array, and join it back.
+
+- **Question 14**: Create a function `countVowels` that counts the number of vowels (a, e, i, o, u) in a string, case-insensitive.
+  - **Example**: `countVowels("Hello")` → `2`.
+  - **Why**: Practices string iteration and conditionals.
+  - **Approach**: Loop through the string or use a regular expression (`/[aeiou]/gi`).
+
+#### **8. Combining Concepts (Mini-Projects)**
+**Concept**: Applying multiple fundamentals in practical problems.
+
+- **Question 15**: Write a function `todoList` that manages a to-do list as an array of objects. Each task has a `title` and `completed` status. Implement methods to:
+  - Add a task.
+  - Mark a task as completed by title.
+  - List all incomplete tasks.
+  - **Example**:
+    ```javascript
+    todoList.addTask("Learn JavaScript");
+    todoList.addTask("Build a project");
+    todoList.completeTask("Learn JavaScript");
+    todoList.getIncompleteTasks(); // → [{title: "Build a project", completed: false}]
+    ```
+  - **Why**: Combines arrays, objects, and functions in a practical scenario.
+  - **Approach**: Use an array to store task objects and define methods to manipulate it.
+
+- **Question 16**: Create a function `numberGuessingGame` that generates a random number between 1 and 100 and prompts the user to guess it. Provide hints ("too high" or "too low") until they guess correctly, and log the number of attempts.
+  - **Why**: Integrates loops, conditionals, and user interaction.
+  - **Approach**: Use `Math.random()`, a `while` loop, and conditionals for hints. (For simplicity, simulate user input with a predefined array of guesses if not using `prompt`.)
+
+---
+
+### **How to Use These Exercises**
+1. **Start Simple**: Begin with Questions 1–4 to solidify basics.
+2. **Progress Gradually**: Move to loops and functions (Questions 5–8), then arrays and objects (Questions 9–12).
+3. **Challenge Yourself**: Tackle string manipulation (Questions 13–14) and mini-projects (Questions 15–16) to combine concepts.
+4. **Test Your Code**: Use a JavaScript environment to run your solutions. Log outputs to verify correctness.
+5. **Debug and Reflect**: If your code doesn’t work, use `console.log` to trace variables and understand errors.
+6. **Explore Variations**: Modify questions (e.g., add input validation or extra features) to deepen understanding.
+
+### **Example Solution (Question 7: isPalindrome)**
+```javascript
+function isPalindrome(str) {
+  str = str.toLowerCase();
+  return str === str.split("").reverse().join("");
+}
+console.log(isPalindrome("Racecar")); // true
+console.log(isPalindrome("hello")); // false
+```
+
+### **Tips for Success**
+- **Practice Daily**: Spend 30–60 minutes coding a few questions.
+- **Read Documentation**: Refer to MDN Web Docs for methods like `Array.prototype.map` or `String.prototype.split`.
+- **Ask for Feedback**: If you want me to review your solutions or provide hints, share your code or describe your approach!
+
+Would you like me to provide a sample solution for any specific question, or do you want to start coding one and share it for feedback? Alternatively, I can tailor the list to focus on a specific concept (e.g., arrays or functions) if you prefer!
