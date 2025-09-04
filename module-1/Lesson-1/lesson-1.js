@@ -171,4 +171,20 @@ const sumtoN = (n) => {
 }
 // console.log(sumtoN(100));
 
-// Stop: exercise 7
+// Check for palindromity
+const checkPalindrome = (str) => { //acaacaad
+    let palinTruth = false;
+    for(let i=1; i<=str.length; i++) {
+        if(str[i-1]===str[str.length-i])
+            palinTruth = true;
+        else {
+            palinTruth = false;
+            break;
+        }
+    }
+    return palinTruth;
+}
+// console.log(checkPalindrome('aaaadaaaa'));
+
+
+// Stop: exercise 8
