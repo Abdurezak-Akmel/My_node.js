@@ -172,7 +172,7 @@ const sumtoN = (n) => {
 // console.log(sumtoN(100));
 
 // Check for palindromity
-const checkPalindrome = (str) => { //acaacaad
+export const checkPalindrome = (str) => { //acaacaad
     let palinTruth = false;
     for(let i=1; i<=str.length; i++) {
         if(str[i-1]===str[str.length-i])
@@ -186,5 +186,15 @@ const checkPalindrome = (str) => { //acaacaad
 }
 // console.log(checkPalindrome('aaaadaaaa'));
 
-
-// Stop: exercise 8
+//The Factorial of a Number
+//Not debugged
+let result = 1;
+const factorial = (number) => {
+    result*=number;
+    number--;
+    factorial(number);
+    if(number==1)
+        return result;
+}
+// console.log(factorial(4));
+// Stop: exercise 9
