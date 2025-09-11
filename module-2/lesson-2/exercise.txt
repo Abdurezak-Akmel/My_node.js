@@ -1,0 +1,180 @@
+Below are 12 simple exercises to help you practice using the **global**, **process**, and **Buffer** global objects in Node.js. Each exercise includes a task, a brief explanation, and a solution to guide you. These exercises are designed for beginners to reinforce understanding of these global objects.
+
+---
+
+### Exercises on `global` Object
+
+1. **Access a Global Property**
+   - **Task**: Create a Node.js script that logs the `global` object and checks if `console` is a property of `global`.
+   - **Explanation**: The `global` object contains built-in utilities like `console`. This exercise verifies its presence.
+   - **Solution**:
+     ```javascript
+     console.log("Is console a global property?", global.console === console); // Output: true
+     ```
+
+2. **Add a Custom Global Variable**
+   - **Task**: Add a custom property `appVersion` to the `global` object and log it from another file.
+   - **Explanation**: Demonstrates how `global` properties are accessible across modules (though not recommended in production).
+   - **Solution** (in `app.js`):
+     ```javascript
+     global.appVersion = "1.0.0";
+     console.log(global.appVersion); // Output: 1.0.0
+     ```
+     - Create another file `test.js`:
+       ```javascript
+       console.log(global.appVersion); // Output: 1.0.0
+       ```
+     - Run: `node app.js` then `node test.js`.
+
+3. **Use `__dirname` and `__filename`**
+   - **Task**: Log the current directory and file name using `__dirname` and `__filename`.
+   - **Explanation**: These are global properties providing the module’s directory and file paths.
+   - **Solution**:
+     ```javascript
+     console.log("Directory:", __dirname);
+     console.log("File:", __filename);
+     // Output: Directory: /path/to/current/dir
+     //         File: /path/to/current/dir/script.js
+     ```
+
+---
+
+### Exercises on `process` Object
+
+4. **Read Command-Line Arguments**
+   - **Task**: Write a script that logs all command-line arguments passed to it.
+   - **Explanation**: `process.argv` is an array containing the command-line arguments, starting with `node` and the script name.
+   - **Solution**:
+     ```javascript
+     console.log("Arguments:", process.argv);
+     // Run: node script.js arg1 arg2
+     // Output: Arguments: ['node', '/path/to/script.js', 'arg1', 'arg2']
+     ```
+
+5. **Access an Environment Variable**
+   - **Task**: Check if `NODE_ENV` is set and log its value or a default message if undefined.
+   - **Explanation**: `process.env` provides access to environment variables.
+   - **Solution**:
+     ```javascript
+     const env = process.env.NODE_ENV || "not set";
+     console.log("NODE_ENV:", env);
+     // Output: NODE_ENV: not set (unless set, e.g., export NODE_ENV=production)
+     ```
+
+6. **Exit the Process**
+   - **Task**: Create a script that exits with a success code (0) if a condition is met, otherwise exits with a failure code (1).
+   - **Explanation**: `process.exit` terminates the Node.js process with a status code.
+   - **Solution**:
+     ```javascript
+     const number = 42;
+     if (number > 0) {
+       console.log("Success!");
+       process.exit(0);
+     } else {
+       console.error("Failure!");
+       process.exit(1);
+     }
+     ```
+
+7. **Handle Uncaught Exceptions**
+   - **Task**: Write a script that catches uncaught exceptions and logs the error message before exiting.
+   - **Explanation**: `process.on("uncaughtException")` handles synchronous errors to prevent crashes.
+   - **Solution**:
+     ```javascript
+     process.on("uncaughtException", (err) => {
+       console.error("Caught error:", err.message);
+       process.exit(1);
+     });
+     throw new Error("Test error");
+     // Output: Caught error: Test error
+     ```
+
+8. **Get Process ID**
+   - **Task**: Log the current process ID using `process.pid`.
+   - **Explanation**: `process.pid` provides the unique ID of the running Node.js process.
+   - **Solution**:
+     ```javascript
+     console.log("Process ID:", process.pid);
+     // Output: Process ID: 12345 (varies)
+     ```
+
+---
+
+### Exercises on `Buffer` Object
+
+9. **Create a Buffer from a String**
+   - **Task**: Create a Buffer from the string "Node.js" and log its contents as a string.
+   - **Explanation**: `Buffer.from` converts a string to a Buffer, and `toString` converts it back.
+   - **Solution**:
+     ```javascript
+     const buf = Buffer.from("Node.js");
+     console.log("Buffer contents:", buf.toString("utf8"));
+     // Output: Buffer contents: Node.js
+     ```
+
+10. **Modify a Buffer**
+    - **Task**: Create a Buffer from "Hello", change the first two bytes to "Hi", and log the result.
+    - **Explanation**: `buf.write` modifies Buffer contents at a specified offset.
+    - **Solution**:
+      ```javascript
+      const buf = Buffer.from("Hello");
+      buf.write("Hi", 0, 2);
+      console.log(buf.toString("utf8"));
+      // Output: Hi,lo
+      ```
+
+11. **Allocate an Empty Buffer**
+    - **Task**: Create a 10-byte Buffer filled with zeros and log its contents.
+    - **Explanation**: `Buffer.alloc` creates a zero-filled Buffer of a specified size.
+    - **Solution**:
+      ```javascript
+      const buf = Buffer.alloc(10);
+      console.log(buf);
+      // Output: <Buffer 00 00 00 00 00 00 00 00 00 00>
+      ```
+
+12. **Convert Buffer to Base64**
+    - **Task**: Create a Buffer from "Test" and convert it to a base64-encoded string.
+    - **Explanation**: `buf.toString("base64")` encodes binary data as base64, useful for APIs or data transfer.
+    - **Solution**:
+      ```javascript
+      const buf = Buffer.from("Test");
+      console.log("Base64:", buf.toString("base64"));
+      // Output: Base64: VGVzdA==
+      ```
+
+---
+
+### Bonus Exercise: Combining Global Objects
+
+13. **Process Arguments with Buffer**
+    - **Task**: Write a script that takes a command-line argument, converts it to a Buffer, and logs its length and contents.
+    - **Explanation**: Combines `process.argv` for input and `Buffer` for data manipulation.
+    - **Solution**:
+      ```javascript
+      const input = process.argv[2] || "No input";
+      const buf = Buffer.from(input);
+      console.log("Length:", buf.length);
+      console.log("Contents:", buf.toString("utf8"));
+      // Run: node script.js Hello
+      // Output: Length: 5
+      //         Contents: Hello
+      ```
+
+---
+
+### Tips for Completing Exercises
+- **Run Instructions**: Save each script as `script.js` and run with `node script.js` (add arguments where needed, e.g., `node script.js arg1`).
+- **Error Handling**: Add `try...catch` blocks if you expect errors (e.g., invalid input).
+- **Environment Setup**: For exercises involving `process.env`, set environment variables (e.g., `export NODE_ENV=production` on Linux/macOS or `set NODE_ENV=production` on Windows).
+- **Testing Buffers**: Create a sample file (e.g., `example.txt`) for file-related exercises if needed.
+
+---
+
+### Further Learning
+- Experiment with other `process` events like `unhandledRejection` for Promises.
+- Try reading a file into a Buffer using the `fs` module (e.g., `fs.readFile`).
+- Explore Node.js documentation for `process` (https://nodejs.org/api/process.html) and `Buffer` (https://nodejs.org/api/buffer.html).
+- For API-related tasks, check xAI’s API at https://x.ai/api.
+
+If you want solutions with more detail, additional exercises, or help debugging, let me know!
