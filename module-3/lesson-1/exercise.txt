@@ -1,0 +1,84 @@
+### 39 Practice Questions on the Node.js `fs` Module
+
+These questions progress from easy (basic synchronous operations, simple reads/writes) to medium (asynchronous APIs, options, error handling) to complex (streams, advanced file descriptors, watching, permissions with edge cases). Each includes a brief setup or requirement to guide implementation. Use Promise-based APIs (`fs.promises`) where possible for modern code, but note alternatives like callbacks or sync methods.
+
+#### Easy Questions (1-15: Basic file and directory operations)
+1. Write a script using `fs.readFileSync` to read the contents of a file named "example.txt" and log it to the console as a UTF-8 string.
+
+2. Using `fs.writeFileSync`, create a new file called "output.txt" and write the string "Hello, Node.js!" to it. Verify the file exists afterward using `fs.existsSync`.
+
+3. Implement a function that uses `fs.appendFileSync` to add a new line ("New entry") to an existing file "log.txt". Handle the case where the file doesn't exist initially.
+
+4. Write code with `fs.unlinkSync` to delete a file named "temp.txt". Use `try...catch` to handle any errors if the file doesn't exist.
+
+5. Using `fs.mkdirSync`, create a directory called "test-folder". Then, use `fs.readdirSync` to list its contents (which should be empty) and log them.
+
+6. Create a script that uses `fs.statSync` to get the size of "example.txt" and logs a message if it's larger than 100 bytes.
+
+7. With `fs.accessSync`, check if "example.txt" is readable (using `fs.constants.R_OK`). Log "Readable" or "Not readable".
+
+8. Use `fs.renameSync` to rename "old-name.txt" to "new-name.txt". Confirm the change by checking existence of both files with `fs.existsSync`.
+
+9. Implement `fs.copyFileSync` to copy "source.txt" to "backup.txt". Use the default mode and verify the copy by reading both files.
+
+10. Using `fs.truncateSync`, shorten "log.txt" to 50 bytes. Then, use `fs.statSync` to confirm the new size.
+
+11. Write a function that uses `fs.readSync` with a file descriptor: Open "data.bin" in read mode, read the first 10 bytes into a Buffer, and log them as hex.
+
+12. With `fs.writeSync`, open "output.bin" in write mode, write a Buffer containing [1, 2, 3] at position 0, close the file, and verify.
+
+13. Use `fs.mkdirSync` with `{ recursive: true }` to create a nested directory like "/tmp/project/logs". List the structure using `fs.readdirSync` recursively (hint: manual loop).
+
+14. Implement a script that uses `fs.appendFileSync` to add timestamps to "access.log" in a loop (5 times), ensuring each append is atomic.
+
+15. Using `fs.statSync` and `fs.constants`, check if a path is a directory or file, and log the modification time in a human-readable format.
+
+#### Medium Questions (16-27: Asynchronous operations, options, and basic streams)
+16. Convert question 1 to asynchronous using `fsPromises.readFile` with `async/await`. Handle errors with try-catch and log the result.
+
+17. Using `fsPromises.writeFile`, asynchronously write JSON data (e.g., `{ name: "Grok" }`) to "config.json" with `{ encoding: 'utf8' }`. Parse and log it back.
+
+18. Implement `fsPromises.unlink` to delete "temp.txt" asynchronously. Chain it with a promise to log "Deleted" only after success.
+
+19. Use `fsPromises.mkdir` with `{ recursive: true }` to create "/data/uploads". Then, use `fsPromises.readdir` to list files and filter only .txt files.
+
+20. With `fsPromises.stat`, asynchronously get the birthtime of "example.txt" and compare it to the current date to see if it's newer than a week.
+
+21. Implement `fsPromises.access` to check write permissions on "protected.txt" (using `fs.constants.W_OK`). If writable, append a message; else, log an error.
+
+22. Using `fsPromises.rename`, move "file.txt" to "../backup/file.txt" asynchronously. Handle path errors with `path.join` from the `path` module.
+
+23. With `fsPromises.copyFile`, copy "large.txt" to "copy.txt" using `fs.constants.COPYFILE_EXCL` mode. Handle the error if the destination exists.
+
+24. Implement `fsPromises.truncate` to resize "log.txt" to 0 bytes asynchronously, then append new content to restart the log.
+
+25. Create a readable stream with `fs.createReadStream` for "data.txt" (encoding: 'utf8'). Listen for 'data' events to count total lines read.
+
+26. Using a writable stream `fs.createWriteStream`, pipe data from a readable stream of "input.txt" to "output.txt". Handle 'finish' event to log completion.
+
+27. Combine streams: Create a readable stream for "source.bin", transform chunks (e.g., uppercase strings), and write to "transformed.txt" using a writable stream.
+
+#### Complex Questions (28-39: Advanced file descriptors, watching, permissions, edge cases)
+28. Using file descriptors: Open "binary.dat" with `fsPromises.open('r+')`, read 20 bytes into a Buffer at offset 10, modify the Buffer, write it back, and close.
+
+29. Implement random access: Open "database.db" in 'r+' mode, seek to position 100 with `fsPromises.read` (length: 8), update as a number, and write with `fsPromises.write`.
+
+30. Handle partial reads: Use `fs.read` on a file descriptor for "partial.txt", read in a loop until EOF (bytesRead === 0), concatenating Buffers.
+
+31. Advanced append: Open "log.fd" in 'a' mode, use `fsPromises.write` to append multiple Buffers atomically in a loop, syncing with `fs.fdatasync`.
+
+32. Use `fsPromises.chmod` to set permissions on "secure.txt" to 0o644 (readable by owner, read/write by group/others? Wait, standard). Verify with `fsPromises.access`.
+
+33. Implement recursive directory stats: Use `fsPromises.readdir` with `{ withFileTypes: true }`, then recursively stat each entry to compute total directory size.
+
+34. Ownership change: Use `fsPromises.chown` to set owner/group on "shared.txt" (use process.getuid() for current). Handle EPERM errors on non-Unix systems.
+
+35. Watch a directory: Use `fs.watch` on "./watched" for 'rename' and 'change' events. Log event details and ignore self-modifications (e.g., filter by filename).
+
+36. Persistent watching: Use `fs.watchFile` on "monitored.txt" with intervals (1000ms), log stat changes (e.g., size delta), and unwatch after 10 seconds.
+
+37. Symbolic links: Create a symlink with `fsPromises.symlink("target.txt", "link.txt")`, then use `fsPromises.realpath` to resolve it and read the original.
+
+38. Cross-platform paths: Write a function using `fsPromises.rm` with `{ recursive: true, force: true }` to delete a directory tree, handling Windows/Unix differences with `path.sep`.
+
+39. Error simulation and recovery: Simulate ENOSPC (disk full) by mocking `fsPromises.writeFile` errors. Implement retry logic with exponential backoff (up to 3 attempts) before falling back to a temp file.
