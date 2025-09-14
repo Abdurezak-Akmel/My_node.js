@@ -55,8 +55,8 @@ Below are some commonly used methods in the `fs` module, covering both synchrono
 
 #### **2. Writing Files**
 - **Asynchronous**: `fs.writeFile(path, data, [options], callback)`
-  - Writes data to a file, overwriting it if it exists.
   - The callback receives an `err` argument.
+  - Writes data to a file, overwriting it if it exists.
   - Example:
     ```javascript
     fs.writeFile('output.txt', 'Hello, World!', (err) => {
