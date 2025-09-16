@@ -17,4 +17,10 @@ import fs from 'fs';
 //     console.log('Error reading file: ', err);
 // }
 
-// #2, 
+// #2, writing a new file
+// try{
+//     fs.writeFileSync('output.txt', 'Hello Node.js!');
+//     console.log('File Written Successfully!');
+// } catch(err){
+//     console.error('Error writing file: ', err);
+// }
